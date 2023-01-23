@@ -26,20 +26,29 @@ https://github.com/kanious/Project01_SteeringBehavious
  * R : Reset position of all AIs
  * F3 : Active All AIs
  * F4 : Deactive All AIs
- * F5 : Active Seek AIs
- * F6 : Active Flee AIs
- * F7 : Active Pursue AIs
- * F8 : Active Evade AIs
- * F9 : Active Approach AIs
+ * F5 : Active/Deactive Seek AIs (toggle)
+ * F6 : Active/Deactive Flee AIs (toggle)
+ * F7 : Active/Deactive Pursue AIs (toggle)
+ * F8 : Active/Deactive Evade AIs (toggle)
+ * F9 : Active/Deactive Approach AIs (toggle)
 
 
 
 
 3. Simple Description
 
-- Seek : Red object. 
-- Flee : Blue Object.
-- Pursue : Yellow Object.
-- Evade : Green Object.
-- Approach : Purple Object.
+- Left shift changes the player's speed. Please use it with toggle buttons that activate/deactivate AIs for testing.
+
+
+- Seek : Red object. Seeks player's current position if the player is not facing this AI within 90 degrees. It starts moving only when they are within a certain distance from the player.
+
+- Flee : Blue Object. Flees from the player's current position if the player is facing this AI within 90 degrees. It starts running away when the player comes within a certain distance (A) and stops when it is a certain distance (B - farther than A) from the player.
+
+- Pursue : Yellow Object. Pursues player's predicted position if the player is not facing this AI within 30 degrees. It starts moving only when they are within a certain distance from the player.
+
+- Evade : Green Object. Same with "Flee" except position and degrees (predicted position and 30 degrees).
+
+- Approach : Purple Object. Approach the player and keep a certain distance. It always moves unless deactivated.
+
+
 

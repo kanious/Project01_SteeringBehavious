@@ -79,12 +79,12 @@ void AI::Seek(const _float& dt)
 
 	vec3 vTargetPos = m_pTargetPlayer->GetOriginPosition();
 	vec3 vMyPos = m_pTransform->GetPosition();
-	//_float fDist = distance(vTargetPos, vMyPos);
-	//if (10.f < fDist)
-	//{
-	//	m_fSpeed = 0.f;
-	//	return;
-	//}
+	_float fDist = distance(vTargetPos, vMyPos);
+	if (20.f < fDist)
+	{
+		m_fSpeed = 0.f;
+		return;
+	}
 
 	vec3 vDir = vMyPos - vTargetPos;
 	vDir = normalize(vDir);
@@ -150,12 +150,12 @@ void AI::Pursue(const _float& dt)
 
 	vec3 vTargetPos = m_pTargetPlayer->GetOriginPosition() + (m_pTargetPlayer->GetVelocity() * 2.f);
 	vec3 vMyPos = m_pTransform->GetPosition();
-	//_float fDist = distance(vTargetPos, vMyPos);
-	//if (20.f < fDist)
-	//{
-	//	m_fSpeed = 0.f;
-	//	return;
-	//}
+	_float fDist = distance(vTargetPos, vMyPos);
+	if (20.f < fDist)
+	{
+		m_fSpeed = 0.f;
+		return;
+	}
 
 	vec3 vDir = vMyPos - vTargetPos;
 	vDir = normalize(vDir);
@@ -176,7 +176,7 @@ void AI::Evade(const _float& dt)
 	if (nullptr == m_pTargetPlayer || !isActiveEvade)
 		return;
 
-	vec3 vTargetPos = m_pTargetPlayer->GetPosition();
+	vec3 vTargetPos = m_pTargetPlayer->GetOriginPosition() + (m_pTargetPlayer->GetVelocity() * 2.f);
 	vec3 vMyPos = m_pTransform->GetPosition();
 	_float fDist = distance(vTargetPos, vMyPos);
 
