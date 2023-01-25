@@ -30,8 +30,8 @@ static _bool isActiveEvade = true;
 static _bool isActiveApproach = true;
 
 AI::AI()
-	: m_pMesh(nullptr), m_pTargetPlayer(nullptr), m_bLeaving(false), m_fSpeed(0.f), m_fMaxSpeed(5.f)
-	, m_fAccel(0.05f), m_vOriginPos(vec3(0.f))
+	: m_pMesh(nullptr), m_pTargetPlayer(nullptr), m_bLeaving(false), m_fSpeed(0.f), m_fMaxSpeed(10.f)
+	, m_fAccel(0.05f), m_fPrediceDist(20.f), m_vOriginPos(vec3(0.f))
 {
 	m_bDebug = false;
 	m_pInputDevice = CInputDevice::GetInstance(); m_pInputDevice->AddRefCnt();
@@ -79,12 +79,12 @@ void AI::Seek(const _float& dt)
 
 	vec3 vTargetPos = m_pTargetPlayer->GetOriginPosition();
 	vec3 vMyPos = m_pTransform->GetPosition();
-	_float fDist = distance(vTargetPos, vMyPos);
-	if (20.f < fDist)
-	{
-		m_fSpeed = 0.f;
-		return;
-	}
+	//_float fDist = distance(vTargetPos, vMyPos);
+	//if (20.f < fDist)
+	//{
+	//	m_fSpeed = 0.f;
+	//	return;
+	//}
 
 	vec3 vDir = vMyPos - vTargetPos;
 	vDir = normalize(vDir);
@@ -148,14 +148,14 @@ void AI::Pursue(const _float& dt)
 	if (nullptr == m_pTargetPlayer || !isActivePursue)
 		return;
 
-	vec3 vTargetPos = m_pTargetPlayer->GetOriginPosition() + (m_pTargetPlayer->GetVelocity() * 2.f);
+	vec3 vTargetPos = m_pTargetPlayer->GetOriginPosition() + (m_pTargetPlayer->GetVelocity() * m_fPrediceDist);
 	vec3 vMyPos = m_pTransform->GetPosition();
-	_float fDist = distance(vTargetPos, vMyPos);
-	if (20.f < fDist)
-	{
-		m_fSpeed = 0.f;
-		return;
-	}
+	//_float fDist = distance(vTargetPos, vMyPos);
+	//if (20.f < fDist)
+	//{
+	//	m_fSpeed = 0.f;
+	//	return;
+	//}
 
 	vec3 vDir = vMyPos - vTargetPos;
 	vDir = normalize(vDir);
@@ -176,7 +176,7 @@ void AI::Evade(const _float& dt)
 	if (nullptr == m_pTargetPlayer || !isActiveEvade)
 		return;
 
-	vec3 vTargetPos = m_pTargetPlayer->GetOriginPosition() + (m_pTargetPlayer->GetVelocity() * 2.f);
+	vec3 vTargetPos = m_pTargetPlayer->GetOriginPosition() + (m_pTargetPlayer->GetVelocity() * m_fPrediceDist);
 	vec3 vMyPos = m_pTransform->GetPosition();
 	_float fDist = distance(vTargetPos, vMyPos);
 

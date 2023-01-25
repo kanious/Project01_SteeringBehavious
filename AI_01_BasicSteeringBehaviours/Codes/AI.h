@@ -24,6 +24,7 @@ private:
 	_float						m_fSpeed;
 	_float						m_fMaxSpeed;
 	_float						m_fAccel;
+	_float						m_fPrediceDist;
 
 	glm::vec3					m_vOriginPos;
 

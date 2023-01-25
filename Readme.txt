@@ -34,11 +34,15 @@ https://github.com/kanious/Project01_SteeringBehavious
 
 
 
-
 3. Simple Description
 
-- Left shift changes the player's speed. Please use it with toggle buttons that activate/deactivate AIs for testing.
+- Left shift changes the player's speed. At first the player is slower than the AI, pressing Left Shift makes them faster than the AI. Please use it with toggle buttons that activate/deactivate AIs for testing.
 
+- I set the prediction distance of player position for "Pursue" and "Evade" to be quite far. Because I wanted to see the difference with "Seek" and "Flee".
+
+
+
+4. AI Description
 
 - Seek : Red object. Seeks player's current position if the player is not facing this AI within 90 degrees. It starts moving only when they are within a certain distance from the player.
 
